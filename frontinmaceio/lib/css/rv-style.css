@@ -1,0 +1,375 @@
+#rv-slide-wrapper li{
+	line-height: 150%;
+	margin-bottom: .5em
+}
+#rv-slide-wrapper blockquote{
+	width: 100%;
+	margin: 0;
+	padding: 30px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 60px;
+	line-height: 140%;	
+}
+#rv-slide-wrapper .css-tricks-quote{
+	width: 70%;
+	margin: 0 auto;
+}
+/*#rv-slide-wrapper a{
+	color: #115091;
+}*/
+.cover {
+	background: #fafbf9 url(i/bg-cover.jpg) no-repeat 15% top;
+}
+.cover h1 {
+	font-size: 2.2em;
+	margin-bottom: 150px
+}
+.cover body{
+	background: none;
+}
+.cover .present{
+	padding-top: 100px
+}
+.cover .present h2{
+	font-size: 50px;
+	text-transform: none;
+	margin-bottom: 50px;
+}
+
+#author-info{
+	width: 300px;
+	margin: 0 auto;
+}
+
+#rv-slide-wrapper .author-name{
+	font-size: 30px;
+	padding-top: 10px;
+}
+#rv-slide-wrapper .author-name a{
+	color: #1f5782;
+}
+
+#rv-slide-wrapper .profile-pic{
+	float: left;
+	margin-right: 20px;
+}
+
+#rv-slide-wrapper .txt-center{
+	text-align: center;
+}
+
+#pegadinha{
+	position: absolute;
+	bottom: 0;
+}
+
+#list-pp{
+	padding-top: 40px; 
+	list-style: none;
+}
+#list-pp li{
+	float: left;
+	margin-right: 8%
+}
+#list-pp .icn-less{
+	padding-top: 58px
+}
+
+.pesquisa-pp body{
+	background: url(i/pesquisa-popularidade-css.jpg) no-repeat center 100px;
+	background-size: 97% auto;
+}
+.pesquisa-pp h2{
+	color: #555
+}
+.css-problem body{
+	background: #fff url(i/problem.jpg) no-repeat -30px bottom;
+}
+.css3-power body{
+	background: url(i/power.jpg) no-repeat center 0;
+}
+.speed body{
+	background: #100e09 url(i/speed.jpg) no-repeat center 0
+}
+.what body{
+	background: url(i/what.jpg) no-repeat -50px top;
+}
+.better body{
+	background: url(i/who-is-better.jpg) no-repeat center top;
+}
+.features body{
+	background: url(i/canvivete.jpg) no-repeat left -80px;	
+}
+.tools body{
+	background: #100e09 url(i/tools.jpg) no-repeat center 0;
+}
+.cuidado body{
+	background: #fff;
+}
+.minify body{
+	background: url(i/minify.png) no-repeat center 0;
+}
+.organizacao body{
+	background: #fff url(i/limpeza.jpg) no-repeat left bottom;
+}
+.magica body{
+	background: #fff url(i/magica.jpg) no-repeat center bottom;
+}
+
+/* classes */
+.none { display: none }
+.clr { clear: both }
+.left { float: left }
+.right { float: right }
+.blck { display: block }
+.skip {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block
+}
+.group:before, .group:after {
+  content: "";
+  display: table
+}
+.group:after { clear: both }
+.group { zoom: 1 }
+.trans {
+  -moz-transition: all .5s ease-out;
+  -o-transition-property: all .5s ease-out;
+  -webkit-transition: all .5s ease-out;
+  transition: all .5s ease-out;
+}
+#rv-slide-wrapper .gray{
+	color: #afafaf;
+}
+#rv-slide-wrapper .dark-gray{
+	color: #555;
+}
+#rv-slide-wrapper .txt-right{
+	text-align: right;
+}
+.big-font{
+	font-size: 50px;
+}
+
+#rv-slide-wrapper .column{
+	float: left;
+	width: 48%;
+}
+#rv-slide-wrapper .column.right{
+	float: right;
+}
+.space{
+	height: 40px;
+	width: 100%;
+	clear: both;
+}
+.highlight{
+	color: #71E9F4
+}
+.img-circle{
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+}
+.radius-10{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;	
+}
+#rv-slide-wrapper .text-shadow{
+	text-shadow: 2px 2px 2px #000;
+}
+#rv-slide-wrapper .v-center{
+ 	margin-top: 200px
+}
+#rv-slide-wrapper .header-lh{
+	line-height: 110%;
+}
+.absolute-right,
+.absolute-left{
+	position: absolute;
+	top:40%;
+}
+.absolute-left{ left: 0}
+.absolute-right{ right: 0}
+
+#rv-slide-wrapper .bubble {
+  /*position: relative;*/
+  background-color:#141414;
+  margin: 0;
+  padding:10px;
+  text-align:center;
+  width:35%;
+  padding: 40px 20px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 0 3px rgba(0,0,0,0.25); 
+  z-index: 50;
+}
+#rv-slide-wrapper .bubble:after {
+  position: absolute;
+  display: block;
+  content: "";  
+  border-color: #141414 transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:-19px;
+  left:1em;
+  transform:rotate(7deg);
+-ms-transform:rotate(7deg); /* IE 9 */
+-moz-transform:rotate(7deg); /* Firefox */
+-webkit-transform:rotate(7deg); /* Safari and Chrome */
+-o-transform:rotate(7deg); /* Opera */
+}
+
+#rv-slide-wrapper .absolute-left.bubble:after{
+	left: auto;
+	right: 1em;
+	transform:rotate(-7deg);
+	-ms-transform:rotate(-7deg); /* IE 9 */
+	-moz-transform:rotate(-7deg); /* Firefox */
+	-webkit-transform:rotate(-7deg); /* Safari and Chrome */
+	-o-transform:rotate(-7deg); /* Opera */
+}
+.icn-ok{
+	position: absolute;
+	top:-20px;
+	right: 0
+}
+
+/* hightlight */ 
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+#rv-slide-wrapper pre code {
+  display: block; padding: 0.5em;
+  color: #333;
+  background: #f8f8ff
+}
+
+#rv-slide-wrapper pre .comment,
+#rv-slide-wrapper pre .template_comment,
+#rv-slide-wrapper pre .diff .header,
+#rv-slide-wrapper pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+#rv-slide-wrapper pre .keyword,
+#rv-slide-wrapper pre .css .rule .keyword,
+#rv-slide-wrapper pre .winutils,
+#rv-slide-wrapper pre .javascript .title,
+#rv-slide-wrapper pre .nginx .title,
+#rv-slide-wrapper pre .subst,
+#rv-slide-wrapper pre .request,
+#rv-slide-wrapper pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+#rv-slide-wrapper pre .number,
+#rv-slide-wrapper pre .hexcolor,
+#rv-slide-wrapper pre .ruby .constant {
+  color: #099;
+}
+
+#rv-slide-wrapper pre .string,
+#rv-slide-wrapper pre .tag .value,
+#rv-slide-wrapper pre .phpdoc,
+#rv-slide-wrapper pre .tex .formula {
+  color: #d14
+}
+
+#rv-slide-wrapper pre .title,
+#rv-slide-wrapper pre .id {
+  color: #900;
+  font-weight: bold
+}
+
+#rv-slide-wrapper pre .javascript .title,
+#rv-slide-wrapper pre .lisp .title,
+#rv-slide-wrapper pre .clojure .title,
+#rv-slide-wrapper pre .subst {
+  font-weight: normal
+}
+
+#rv-slide-wrapper pre .class .title,
+#rv-slide-wrapper pre .haskell .type,
+#rv-slide-wrapper pre .vhdl .literal,
+#rv-slide-wrapper pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+#rv-slide-wrapper pre .tag,
+#rv-slide-wrapper pre .tag .title,
+#rv-slide-wrapper pre .rules .property,
+#rv-slide-wrapper pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+#rv-slide-wrapper pre .attribute,
+#rv-slide-wrapper pre .variable,
+#rv-slide-wrapper pre .lisp .body {
+  color: #008080
+}
+
+#rv-slide-wrapper pre .regexp {
+  color: #009926
+}
+
+#rv-slide-wrapper pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+#rv-slide-wrapper pre .symbol,
+#rv-slide-wrapper pre .ruby .symbol .string,
+#rv-slide-wrapper pre .lisp .keyword,
+#rv-slide-wrapper pre .tex .special,
+#rv-slide-wrapper pre .prompt {
+  color: #990073
+}
+
+#rv-slide-wrapper pre .built_in,
+#rv-slide-wrapper pre .lisp .title,
+#rv-slide-wrapper pre .clojure .built_in {
+  color: #0086b3
+}
+
+#rv-slide-wrapper pre .preprocessor,
+#rv-slide-wrapper pre .pi,
+#rv-slide-wrapper pre .doctype,
+#rv-slide-wrapper pre .shebang,
+#rv-slide-wrapper pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+#rv-slide-wrapper pre .deletion {
+  background: #fdd
+}
+
+#rv-slide-wrapper pre .addition {
+  background: #dfd
+}
+
+#rv-slide-wrapper pre .diff .change {
+  background: #0086b3
+}
+
+#rv-slide-wrapper pre .chunk {
+  color: #aaa
+}

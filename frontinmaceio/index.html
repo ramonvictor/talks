@@ -1,0 +1,835 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Pré-processadores CSS</title>
+
+		<meta name="description" content="Porque surgiram os pré-processadores CSS? Como eles podem ser úteis?">
+		<meta name="author" content="Ramon Victor">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+<!-- 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
+		
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="lib/css/rv-style.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<div id="rv-slide-wrapper" class="slides">
+
+				<section data-state="cover">
+					<h1>Pré-processadores CSS</h1>
+					<div class="space"></div>
+					<div id="author-info" class="group">
+						<img src="img/ramonvictor.png" height="69" width="69" alt="Ramon Victor" class="profile-pic">
+						<p class="author-name"><a href="http://www.linkedin.com/in/ramonvictor">@ramonvictor</a></p>
+					</div>
+					<div class="space"></div>
+					<p style="font-size: 26px;" class="dark-gray txt-center">http://talks.ramonvictor.com/frontinmaceio/</p>
+				</section>
+
+				<section>
+					<h2>Quem sou eu?</h2>
+					<img src="img/about.png" height="480" width="926" alt="" />
+				</section>
+				<section>
+					<h2>@ramonvictor</h2>
+					<ul>
+						<li><a href="https://github.com/ramonvictor">https://github.com/ramonvictor</a></li>
+						<li><a href="https://twitter.com/ramonvictor">https://twitter.com/ramonvictor</a></li>
+						<li><a href="http://be.net/ramonvictor">http://be.net/ramonvictor</a></li>
+						<li><a href="http://www.linkedin.com/in/ramonvictor">http://www.linkedin.com/in/ramonvictor</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>O que veremos?</h2>
+					<ul style="font-size: 42px">
+						<li class="fragment">Problemas  ao codificar CSS</li>
+						<li class="fragment">O que são Pré-processadores?</li>
+						<li class="fragment">Pré-processadores CSS mais populares</li>
+						<li class="fragment">Ferramentas</li>
+						<li class="fragment">Principais features</li>
+						<li class="fragment">Onde tomar cuidado</li>
+					</ul>
+				</section>
+				<section data-state="css-problem">
+					<h2 class="dark-gray v-center">Os problemas<br> que enfrentamos<br> ao codificar CSS</h2>
+				</section>
+				<section>
+					<h2>Definição de CSS</h2>
+					<div class="fragment">
+						<blockquote>
+						 É um mecanismo <strong class="highlight">simples</strong> para adicionar estilos (p.ex., fontes, cores, espaçamentos) aos documentos Web. 
+						</blockquote>
+						<p class="gray txt-right">Maujor</p>
+					</div>
+				</section>
+				<section>
+					<h2>Tudo muito simples...</h2>
+					<div class="fragment">
+					<pre style="font-size: 30px"><code contenteditable>body {
+  background: #000 url('imagens/minhaimagem.gif');
+}
+h3 {
+  color: #f00;
+}
+p {
+  margin-left: 15px; 
+  padding: 1.5em;
+}
+</code></pre>						
+					</div>
+				</section>
+				<section>
+					<h2>Até que...</h2>
+					<ul style="font-size: 45px">
+						<li class="fragment">Border-radius</li>
+						<li class="fragment">Transitions</li>
+						<li class="fragment">Animation</li>
+						<li class="fragment">Multiple Backgrounds</li>
+						<li class="fragment">...</li>
+					</ul>
+				</section>
+				<section data-state="css3-power">
+					<h2 class="v-center">CSS3 nos deu<br> super poderes</h2>
+				</section>
+				<section>
+					<h2 style="line-height: 150%;text-align: center">Com grandes <strong class="highlight">poderes</strong><br> vem grandes...<br> <strong class="highlight fragment">complexidades</strong></h2>
+				</section>
+				<section>
+					<h2>Milhares de prefixos</h2>
+					<pre><code contenteditable>.botao{
+ background: #1e5799; 
+ background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); 
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8));
+ background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); 
+ background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); 
+ background: -ms-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); 
+ background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+}
+</code></pre>
+				</section>
+				<section>
+					<h2>Arquivos gigantes</h2>
+					<img src="img/heavy-css.jpg" height="588" width="750" alt="">
+				</section>
+				<section>
+					<h2>Repetitivos</h2>
+<pre style="font-size: 24px"><code contenteditable>#header h1{
+ color: #FF0000;
+ border-radius: 5px;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+}
+#sidebar a{
+ color: #FF0000;
+}
+#fotter{
+ border-radius: 5px;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+}
+</code></pre>
+				</section>
+				<section data-state="speed">
+				</section>
+				<section>
+					<h2 class="v-center header-lh">É nesse cenário que surgem os<br> Pré-processadores CSS</h2>
+				</section>
+				<section data-state="what">
+					<h2 class="dark-gray v-center column right header-lh" style="text-align: left; width: 60%">Mas o que são<br> pré-processadores?</h2>
+				</section>
+				<section>
+					<h2>O que são pré-processadores?</h2>
+					<div class="space"></div>
+					<p class="txt-center fragment">Quando você deseja dizer que esqueceu algo...</p>
+					<div class="space"></div>
+					<div class="fragment" style="position: relative; top: 80px">
+					<img src="img/forgot.png" height="250" width="250" alt="" class="img-circle"  />
+					</div>
+					<p class="fragment absolute-right bubble">Deu <strong class="highlight">#FFFFFF</strong>!</p>
+					<p class="fragment absolute-left bubble">Deu <strong class="highlight">branco</strong>!
+						<img src="img/ok.png" height="64" width="64" alt="" class="fragment icn-ok">
+					</p>
+				</section>
+				<section>
+					<h2>O que são pré-processadores?</h2>
+					<div class="space"></div>
+					<p class="txt-center">Alguém conhece esse cara?</p>
+					<img src="img/pp-guy.jpg" height="204" width="219" alt="" class="img-circle"/>
+					<div class="space"></div>
+					<h3 class="fragment">Ele é um pré-processador CSS!</h3>
+				</section>
+				<section>
+					<h2>O que são pré-processadores?</h2>
+					<img src="img/pp-guy-listening.png" height="264" width="731" alt="" class="fragment">
+					<img src="img/pp-guy-speaking.png" height="267" width="731" alt="" class="fragment">
+					
+				</section>
+				<section>
+					<h2>Então Pré-processadores CSS...</h2>
+					<div class="space"></div>
+					<ul style="font-size: 45px">
+						<li class="fragment">
+							Entendem o linguajar dos desenvolvedores
+						</li>
+						<li class="fragment">
+							A sintaxe das CSS é <strong class="highlight">browser-friendly</strong>
+						</li>
+						<li class="fragment">
+							Os pré-processadores CSS são <strong class="highlight">human-friendly</strong>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2><img src="img/warning.png" height="65" width="65" alt="" style="margin-right:20px">Preste atenção!</h2>
+					<ul style="font-size: 42px">
+						<li class="fragment">Não estamos falando em melhorar o core do CSS. O W3C já vem fazendo isso.</li>
+						<li class="fragment">Estamos falando de <strong class="highlight">workflow de desenvolvimento</strong>.</li>
+						<li class="fragment">Mais especificamente de <strong class="highlight">eficiência</strong> no desenvolvimento.</li>
+					</ul>
+				</section>
+				<section>
+					<div class="css-tricks-quote">
+						<blockquote class="big-font">
+							I want to work faster and more efficiently. That's what CSS preprocessors really do.
+						</blockquote>						
+						<p class="gray txt-right">Chris Coyier (CSS Tricks)</p>
+					</div>
+				</section>
+				<section>
+					<h2>Pré-processadores CSS mais populares</h2>
+					<ul id="list-pp" class="group">
+						<li class="icn-less"><img src="img/less-logo-large.png" height="81" width="199" alt=""></li>
+						<li><img src="img/sass.gif" height="209"  alt=""></li>
+						<li><img src="img/stylus.png" height="209" width="220" alt=""></li>
+					</ul>
+				</section>
+				<section>
+					<p class="txt-center"><a href="http://lesscss.org/">http://lesscss.org/</a></p>
+					<div class="space"></div>
+					<img src="img/less-site.png" height="450" alt="">
+				</section>
+				<section>
+					<p class="txt-center"><a href="http://sass-lang.com/">http://sass-lang.com/</a></p>
+					<div class="space"></div>
+					<img src="img/sass-site.png" height="450" alt="">
+				</section>
+				<section>
+					<p class="txt-center"><a href="http://learnboost.github.com/stylus/">http://learnboost.github.com/stylus/</a></p>
+					<div class="space"></div>
+					<img src="img/stylus-site.png" width="601" height="468" alt="">
+				</section>
+				<section>
+					<h2><img src="img/less-logo-large.png" height="60"  alt=""> Syntax</h2>
+					<div class="column">
+					<pre><code contenteditable>// LESS
+@color: #4D926F;
+
+#header {
+  color: @color;
+  .rounded();
+}
+
+.rounded(@r: 5px) {
+  -webkit-border-radius: @r;
+  -moz-border-radius: @r;
+  -ms-border-radius: @r;
+  -o-border-radius: @r;
+  border-radius: @r;
+}</code></pre>
+					</div>
+					<div class="column righ">
+						<pre><code contenteditable>/* CSS Compilado */
+#header {
+ color: #4D926F;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ -ms-border-radius: 5px;
+ -o-border-radius: 5px;
+ border-radius: 5px;
+}</code></pre>
+					</div>
+				</section>
+				<section>
+					<h2><img src="img/sass.gif" height="80"  alt=""> Syntax</h2>
+					<div class="column">
+					<pre><code contenteditable>// .SCSS
+$blue: #3bbfce;
+$margin: 16px;
+
+.content-navigation {
+  border-color: $blue;
+  color:
+    darken($blue, 9%);
+}
+
+.border {
+  padding: $margin / 2;
+  margin: $margin / 2;
+  border-color: $blue;
+}</code></pre>
+					</div>
+					<div class="column righ">
+						<pre><code contenteditable>// .SASS
+$blue: #3bbfce
+$margin: 16px
+
+.content-navigation
+  border-color: $blue
+  color: darken($blue, 9%)
+
+.border
+  padding: $margin / 2
+  margin: $margin / 2
+  border-color: $blue</code></pre>
+					</div>
+				</section>				
+				<section>
+					<h2><img src="img/stylus.png" height="80" alt=""> Syntax</h2>
+					<div class="column">
+					<pre><code contenteditable>// Stylus
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+  
+body
+  font 12px Helvetica, Arial, sans-serif
+  
+a.button
+  border-radius(5px)</code></pre>
+					</div>
+					<div class="column righ">
+						<pre><code contenteditable>/* CSS compilado */ 
+body { 
+  font: 12px Helvetica, Arial, sans-serif 
+}
+a.button { 
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}</code></pre>
+					</div>
+
+				</section>
+				<section>
+					<h2>Mitos</h2>
+					<ul class="group" style="font-size: 48px">
+						<li class="fragment">Sass apenas em projetos Ruby</li>
+						<li class="fragment">Less só roda no client-side</li>
+						<li class="fragment">Bootstrap usa Less, então ele é o melhor</li>
+						<li class="fragment">É muito difícil de usar</li>						
+					</ul>
+				</section>
+				<section>
+					<h2>Compilar código? <strong class="highlight">¬¬"</strong></h2>
+					<div class="space"></div>
+					<blockquote>
+						Eu ODEIO trabalhar com linha de comando!
+					</blockquote>
+				</section>
+				<section>
+					<p class="txt-center"><a href="http://wearekiss.com/simpless">http://wearekiss.com/simpless</a></p>
+					<div class="space"></div>
+					<img src="img/simpless.png" height="450" alt="">
+				</section>
+				<section>
+					<p class="txt-center"><a href="http://winless.org/">http://winless.org/</a></p>
+					<div class="space"></div>
+					<img src="img/winless.png" height="450" alt="">
+				</section>
+				
+				<section>					
+					<p class="txt-center"><a href="http://compass.handlino.com/">http://compass.handlino.com/</a></p>
+					<div class="space"></div>
+					<img src="img/compassapp.png"  height="450" alt="">
+				</section>
+				<section>
+					<p class="txt-center"><a href="http://incident57.com/codekit/">http://incident57.com/codekit/</a></p>
+					<div class="space"></div>
+					<img src="img/codekit.png" height="450" alt="">
+				</section>
+				<section data-state="better">
+					<h2>Qual é o melhor?</h2>
+				</section>
+				<section data-state="pesquisa-pp">
+				</section>
+				<section>
+					<h2>Qual é o melhor?</h2>
+					<img src="img/you-choose.png" width="400" height="400" alt="" class="img-circle fragment">
+				</section>
+				
+				<section data-state="features">
+					<h2 class="title dark-gray v-center header-lh">Principais features<br> dos Pré-processadores</h2>
+				</section>
+				<section>
+					<h2>Comentários</h2>
+					<div class="fragment">
+					<p class="txt-center">Versão do dev</p>
+<pre><code contenteditable>// ===============================
+// Cores
+// ===============================
+h1{ color: #555; }
+p{ color: #ccc; }
+a{ color: #999; }</code></pre>
+					</div>
+					<div class="space"></div>
+					<div class="fragment">
+					<p class="txt-center">Versão produção</p>
+<pre><code contenteditable>
+h1{color:#555}p{color: #ccc}a{color:#999}</code></pre>
+					</div>					
+				</section>	
+				<section>
+					<h2>Uso de variáveis</h2>
+					<img src="img/exemplo-variaveis.png" height="536" width="687" alt="" class="radius-10 fragment">
+				</section>
+				<section>
+<pre><code contenteditable>/* Sem pré-processador */
+.on-page-pernambuco #nav-prev{ 
+  background-color: #fdd22f
+}
+.on-page-pernambuco #nav-next{ 
+  background-color: #7945c1
+}
+.on-page-sertao #nav-prev{ 
+  background-color: #28bad9 
+}
+.on-page-sertao #nav-next{ 
+  background-color: #fdd22f
+}
+.on-page-agreste #nav-prev{ 
+  background-color: #7945c1
+} /* ... */
+</code></pre>
+				</section>
+				<section>
+					<h2>Usando LESS</h2>
+<pre style="font-size: 40px"><code contenteditable>@azul-pernambuco: #28bad9; 
+@roxo-sertao: #7945c1;
+@amarelo-agreste: #fdd22f; 
+</code></pre>
+				</section>
+				<section>
+<pre style="font-size: 23px"><code class="css" contenteditable>.on-page-pernambuco #nav-prev{ 
+  background-color: @amarelo-agreste;
+}
+.on-page-pernambuco #nav-next{ 
+  background-color: @roxo-sertao;
+}
+.on-page-sertao #nav-prev{ 
+  background-color: @azul-pernambuco;
+}
+.on-page-sertao #nav-next{ 
+  background-color: @amarelo-agreste;
+}
+.on-page-agreste #nav-prev{ 
+  background-color: @roxo-sertao;
+} /* ... */
+</code></pre>
+				</section>
+				<section>
+					<h2>Variáveis não são apenas para cor</h2>
+					<pre style="font-size: 40px; line-height:140%"><code contenteditable>
+@fonts: Arial, sans-serif;
+@img-path: "../img/";
+@margin: "15px";
+@column-width: "290px";
+@desktop-width: "960px";
+				</code></pre>
+				</section>
+				<section>
+					<h2><strong class="highlight">&</strong> mágico</h2>
+<pre class="column"><code contenteditable>// LESS
+#nav{
+  a{
+    color: @dark-blue;
+    &:hover{
+       color: @orange;
+    }    
+    .rgba &{
+      color: rgba(37, 55, 148, .5);
+    }
+  }
+}
+</code></pre>
+<pre class="column right"><code contenteditable>/* CSS compilado */
+#nav a{
+  color: #253794;
+}
+#nav a:hover{
+  color: #ff8a00;
+}    
+.rgba #nav a{
+  color: rgba(37, 55, 148, .5);
+}
+</code></pre>
+				</section>	
+				<section>
+					<h2>Cansado de repetição?</h2>
+<pre><code contenteditable>/* CSS puro */
+#nav {
+  overflow: hidden;
+}
+#nav li{
+  float: left;
+  margin-right: 10px;
+}
+#nav a{
+  color: #555;
+}
+</code></pre>
+				</section>
+				<section>
+					<h2>Use aninhamento</h2>
+<pre><code contenteditable>/* LESS Syntax */
+#nav{
+  overflow: hidden;
+  li{
+    float: left;
+    margin-right: 10px;
+  }
+  a{
+    color: #555;
+  }
+}
+</code></pre>
+				</section>
+				<section>
+					<h2>Código ficando ilegível?</h2>
+<pre style="font-size: 12px" class="fragment"><code class="css" contenteditable>/* LESS Syntax */
+#nav a{
+   -webkit-transform-origin: right bottom;
+   -moz-transform-origin: right bottom;
+   -ms-transform-origin: right bottom;
+   -o-transform-origin: right bottom;
+   transform-origin: right bottom;
+
+   transform: rotate(50);
+   -ms-transform: rotate(50); 
+   -moz-transform: rotate(50);
+   -webkit-transform: rotate(50); 
+   -o-transform: rotate(50); 
+}
+#nav a:hover{
+   -webkit-transform-origin: right bottom;
+   -moz-transform-origin: right bottom;
+   -ms-transform-origin: right bottom;
+   -o-transform-origin: right bottom;
+   transform-origin: right bottom;
+
+   transform: rotate(0);
+   -ms-transform: rotate(0); 
+   -moz-transform: rotate(0);
+   -webkit-transform: rotate(0); 
+   -o-transform: rotate(0); 
+}</code></pre>				
+				</section>
+				<section>
+					<h2>Use mixins!</h2>
+<pre class="fragment"><code class="css" contenteditable>/* LESS Syntax */
+.rotate ( @deg, @x, @y ){
+  -webkit-transform-origin: @x @y;
+  -moz-transform-origin: @x @y;
+  -ms-transform-origin: @x @y;
+  -o-transform-origin: @x @y;
+  transform-origin: @x @y;
+
+  transform: rotate(@deg);
+  -ms-transform: rotate(@deg); 
+  -moz-transform: rotate(@deg);
+  -webkit-transform: rotate(@deg); 
+  -o-transform: rotate(@deg); 
+}
+</code></pre>				
+				</section>
+				<section>
+					<h2>Mixins</h2>
+<pre style="font-size: 32px"><code contenteditable>/* LESS Syntax */
+#nav{
+  a{
+    .rotate(50, right, bottom);
+    &:hover{
+      .rotate(0, right, bottom);
+    }
+  }
+}
+</code></pre>				
+				</section>
+				<section>
+					<h2>Operações e funções para cor</h2>
+<pre style="font-size: 32px"><code contenteditable>// Operações
+width: 960px / 3; // = 320px
+color: #990033 + #666666; // = #FF66CC
+</code></pre>	
+<pre style="font-size: 32px"><code contenteditable>// Funções para cor
+color: saturate(@base, 5%);
+border-color: lighten(@base, 30%);
+background-color: darken(@color, 10%);
+</code></pre>				
+
+
+				</section>
+				<section>
+					<h2>@import sem contraindicações!</h2>
+					<div class="space"></div>
+<pre style="font-size: 40px"><code contenteditable>// LESS	
+@import "colors";
+@import "fonts.less";
+@import "grid";
+@import "mixins";
+</code></pre>					
+				</section>
+				<section>
+					<h2>Organização de pastas</h2>
+<pre style="font-size: 30px"><code contenteditable>css/
+  global.scss
+  currentpage.scss
+    scss/
+      global/
+        _colors.scss
+        _mixins.scss
+        _reset.scss
+      components/
+        _buttons.scss
+        _modal.scss
+</code></pre>					
+				</section>
+				</section>	
+				<section>
+					<h2>E tem mais...</h2>
+				</section>
+				<section>
+					<h2>Compressão de arquivos <strong class="highlight">de graça</strong></h2>
+					<img src="img/minified-css.png" height="450" alt="">
+				</section>
+				<section>
+					<h2>Paleta de cores</h2>
+					<div class="fragment">
+						<img src="img/color-pallete.jpg" height="211" width="510" alt="">
+					</div>
+					<div class="space"></div>
+<pre class="fragment"><code contenteditable>@base: #663333;
+@complement1: spin(@base, 180);
+@complement2: darken(spin(@base, 180), 5%);
+@lighten1: lighten(@base, 15%);
+@lighten2: lighten(@base, 30%);
+</code></pre>					
+				</section>
+				<section>
+					<div>
+						<img src="img/sass.gif" height="238" width="217" alt="">
+					</div>
+					<h2 class="fragment">+</h2>
+					<div class="fragment">
+						<img src="img/compass-logo.png" height="83" width="423" alt="">
+					</div>
+					<h2 class="fragment">=</h2>
+				</section>
+				<section data-state="magica">
+				</section>
+				<section>
+					<h2>CSS sprite</h2>
+<pre  style="font-size: 28px"><code contenteditable>// Compass Sprite			
+@import "my-icons/*.png";
+.actions {
+  .new { @include my-icons-sprite(new); }
+  .edit { @include my-icons-sprite(edit); }
+  .save { @include my-icons-sprite(save); }
+  .delete { @include my-icons-sprite(del); }
+}
+</code></pre>
+				</section>
+				<section>
+					<h2>CSS sprite</h2>
+<pre style="font-size: 25px"><code contenteditable>/* Compass */
+.my-icons-del { 
+  background-position: 0 0; 
+}
+.my-icons-edit { 
+  background-position: 0 -32px; 
+}
+.my-icons-new { 
+  background-position: 0 -64px; 
+}
+.my-icons-save { 
+  background-position: 0 -96px; 
+}
+</code></pre>
+				</section>
+				<section>
+					<h2>Imagem Width & Height automático</h2>
+					
+<pre style="font-size: 30px"><code contenteditable>// Compass Helpers
+
+$bt-cadastro: '../img/bt_cadastro.gif';
+
+.bt-cadastrar{
+  background: url($bt-cadastro) no-repeat;
+  width: image-width($bt-cadastro);
+  height: image-height($bt-cadastro);
+}
+
+</code></pre>					
+				</section>
+				<section data-state="cuidado">
+					<h2 class="dark-gray">Onde tomar cuidado?</h2>
+					<img src="img/damage.jpg" height="353" width="400" alt="">
+				</section>
+				<section>
+					<h2>Não compile client-side!</h2>
+					<img src="img/less-inline.jpg" >
+				</section>
+				<section>
+					<h2 class="v-center">Mixins são perigosos!</h2>
+					<p class="fragment txt-center">Imagine que você queria usar <br> aquele degradê bem legal...</p>
+				</section>
+				<section>					
+					<p class="txt-center"><a href="http://www.colorzilla.com/gradient-editor/">CSS3 Gradient Generator</a></p>
+					<div class="space"></div>
+					<img src="img/gradient-generator.png" height="450" alt="">
+				</section>
+				<section>
+					<h2>Less gradient mixin</h2>
+<pre style="font-size: 22px"><code contenteditable>.gradient( @from, @to){	
+ background: @from;
+ background: -moz-linear-gradient(top, @from 0%, @to 100%); 
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@from), color-stop(100%,@to)); 
+ background: -webkit-linear-gradient(top, @from 0%,@to 100%); 
+ background: -o-linear-gradient(top, @from 0%,@to 100%);
+ background: -ms-linear-gradient(top, @from 0%,@to 100%);
+ background: linear-gradient(to bottom, @from 0%,@to 100%);
+}</code></pre>
+				</section>
+				<section>
+					<h2>Usando o mixin</h2>
+<pre><code contenteditable>#header{
+  .gradient( #7abcff, #4096ee );
+}
+#bt-send {
+ .gradient( #7abcff, #4096ee );
+ &:hover{
+   .gradient( #4096ee, #7abcff );
+ }
+}
+#footer {
+  .gradient( #7abcff, #4096ee );
+}
+.bt {
+  .gradient( #7abcff, #4096ee );	
+}
+</code></pre>
+				</section>
+				<section>
+					<p class="txt-center">Resultado: <strong class="highlight fragment">45 linhas de CSS</strong></p>
+					<img src="img/problem-mixin.png" height="450" alt="" class="fragment">
+				</section>
+				<section>
+					<p class="txt-center">E se fosse assim...</p>
+<pre style="font-size: 30px"><code contenteditable>#header,
+#bt-send,
+#footer,
+.bt
+{
+  .gradient( #7abcff, #4096ee );
+}
+#bt-send:hover{
+  .gradient( #4096ee, #7abcff );
+}
+</code></pre>
+				</section>
+				<section>
+					<p class="txt-center">Resultado: <strong class="highlight fragment">21 linhas de CSS</strong></p>
+					<img src="img/problem-mixin-solved.png" height="450" alt="" class="fragment">
+				</section>	
+				<section>
+					<h2>A lição é simples...</h2>
+					<ul>
+						<li class="fragment" style="font-size: 50px">Não tente dar um passo maior que sua perna!</li>
+						<li class="fragment" style="font-size: 50px">Se não sabe CSS, aprenda!</li>
+						<li class="fragment" style="font-size: 50px">Aprendeu? Agora sim é hora de usar pré-processadores</li>
+					</ul>
+				</section>			
+
+				<section>
+					<h2>Vá além</h2>
+					<ul style="font-size: 45px">
+						<li class="fragment">OOCSS</li>
+						<li class="fragment">DRY CSS</li>
+						<li class="fragment">Clean code</li>
+						<li class="fragment">...</li>
+					</ul>
+				</section>
+				<section>
+					<div class="space"></div>
+					<blockquote>
+					 To have a great idea, <br> have a lot of them. 
+					</blockquote>
+					<p class="gray txt-right">Edison, Thomas A.</p>
+				 </section>
+				<section>
+					<h1>Obrigado! :)</h1>
+					<div class="space"></div>
+					<h2>Pré-processadores CSS</h2>
+					<p class="gray txt-center"><a href="http://www.linkedin.com/in/ramonvictor">@ramonvictor</a></p>
+				</section>
+
+			</div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="js/rv.fn.js"></script>
+
+		<script>
+			
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', condition: function() { return !!document.body.classList; } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } }
+				]
+			});
+			
+
+		</script>
+
+	</body>
+</html>

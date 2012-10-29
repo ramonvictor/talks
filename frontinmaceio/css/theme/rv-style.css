@@ -1,0 +1,41 @@
+.cover .present{
+	padding-top: 100px
+}
+.cover .present h2{
+	font-size: 50px;
+	text-transform: none;
+}
+
+.author-name{
+	width: 240px;
+	margin: 0 auto;
+}
+
+.profile-pic{
+	float: left;
+	margin-right: 20px;
+}
+
+#rv-slide-wrapper .txt-center{
+	text-align: center;
+}
+
+
+/* classes */
+.none { display: none }
+.clr { clear: both }
+.left { float: left }
+.right { float: right }
+.blck { display: block }
+.skip {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block
+}
+.group:before, .group:after {
+  content: "";
+  display: table
+}
+.group:after { clear: both }
+.group { zoom: 1 }
