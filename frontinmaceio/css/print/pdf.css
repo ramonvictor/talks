@@ -23,13 +23,13 @@ body {
 	padding: 0;
 	float: none !important;
 	overflow: visible;
-	background: #333;
 }
 
 html {
 	width: auto;
 	height: auto;
 	overflow: visible;
+	background-color: #232323;
 }
 
 /* SECTION 2: Remove any elements not needed in print. 
@@ -41,7 +41,7 @@ html {
 .fork-reveal,
 .share-reveal,
 .state-background {
-	display:none;
+	display:none!important;
 }
 
 /* SECTION 3: Set body font face, size, and color.
@@ -144,6 +144,8 @@ ul, ol, div, p {
 }
 .reveal section .fragment {
 	opacity: 1 !important;
+	display: block !important;
+	visibility: visible;
 }
 .reveal img {
 	box-shadow: none;
@@ -157,6 +159,6 @@ ul, ol, div, p {
 	font-size: 16pt !important;
 }
 
-pre {
+/*pre {
     font-size: 9pt !important;
-}
+}*/

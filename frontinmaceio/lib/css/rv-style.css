@@ -1,3 +1,6 @@
+.bg-pattern{
+	background: url(i/navy_blue.png) repeat center;
+}
 #rv-slide-wrapper li{
 	line-height: 150%;
 	margin-bottom: .5em
@@ -15,9 +18,6 @@
 	width: 70%;
 	margin: 0 auto;
 }
-/*#rv-slide-wrapper a{
-	color: #115091;
-}*/
 .cover {
 	background: #fafbf9 url(i/bg-cover.jpg) no-repeat 15% top;
 }
@@ -93,7 +93,8 @@
 	background: #100e09 url(i/speed.jpg) no-repeat center 0
 }
 .what body{
-	background: url(i/what.jpg) no-repeat -50px top;
+	background: url(i/what.jpg) no-repeat -200px bottom;
+	background-size: auto 100%;
 }
 .better body{
 	background: url(i/who-is-better.jpg) no-repeat center top;
