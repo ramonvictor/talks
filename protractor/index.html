@@ -15,7 +15,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 		
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link rel="stylesheet" href="css/theme/protractor.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -38,16 +38,16 @@
 			<div class="slides">
 
 				<section>
-					<h1 style="margin-bottom:.6em;">Protractor</h1>
-					<h3>Writing end-to-end test has never been so fun</h3>
+					<h1>Protractor</h1>
+					<h3 style="font-size:1.2em">Writing end-to-end test has never been so fun</h3>
 				</section>
 
 				<section>
 					<h2>What is it about?</h2>
 					<ul>
 						<li>End-to-End test for AngularJS != Unit test (Karma)</li>
-						<li>Built on top of <a href="https://code.google.com/p/selenium/wiki/WebDriverJs">WebDriverJS</a></li>
-						<li>The test files use <a href="http://jasmine.github.io/2.0/introduction.html">Jasmine</a></li>
+						<li>Built on top of <a href="https://code.google.com/p/selenium/wiki/WebDriverJs">WebDriverJS</a> (Selenium server)</li>
+						<li><a href="http://jasmine.github.io/2.0/introduction.html">Jasmine</a> test syntax</li>
 						<li>Maintained by <a href="https://github.com/juliemr">@juliemr</a> on <a href="https://github.com/angular/protractor">Github</a></li>
 					</ul>
 				</section>
@@ -68,7 +68,6 @@
 				<section>
 					<h2>Setup a conf.js file</h2>
 					<pre><code class="language-javascript" data-trim>
-// An example configuration file.
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
@@ -101,6 +100,7 @@ exports.config = {
 				controls: true,
 				progress: true,
 				history: true,
+				rollingLinks: false,
 				
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/linear(2d)
