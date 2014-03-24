@@ -38,7 +38,7 @@
 			<div class="slides">
 
 				<section>
-					<h1>Protractor</h1>
+					<h1 style="margin: 50px 0 .3em">Protractor</h1>
 					<h3 style="font-size:1.2em">Writing end-to-end test has never been so fun</h3>
 				</section>
 
@@ -67,8 +67,7 @@
 
 				<section>
 					<h2>Setup a conf.js file</h2>
-					<pre><code class="language-javascript" data-trim>
-exports.config = {
+					<pre><code class="language-javascript" data-trim>exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
   capabilities: {
@@ -78,11 +77,197 @@ exports.config = {
   specs: ['example-spec.js'],
 
   jasmineNodeOpts: {
-    showColors: true, 
-    isVerbose: true
+    showColors: true
   }
-};
-					</code></pre>
+};</code></pre>
+				</section>
+
+				<section>
+					<h2>Writing tests</h2>
+					<p>Protractor exposes several global variables:</p>
+					<ul>
+						<li><code>browser</code>: <code>browser.get()</code></li>
+						<li><code>element</code> and <code>by</code>: <code>element(by.model('yourName'))</code></li>
+						<li><code>protractor</code>: <code>protractor.Key</code></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Basic example</h2>
+					<pre><code data-trim="" style="font-size:20px;line-height:1em">describe('angularjs homepage', function() {
+  it('should greet the named user', function() {
+    browser.get('http://www.angularjs.org');
+
+    element(by.model('yourName')).sendKeys('Julie');
+
+    var greeting = element(by.binding('yourName'));
+
+    expect(greeting.getText()).toEqual('Hello Julie!');
+  });
+});</code></pre>
+				</section>
+
+				<section>
+					<h2 style="font-size:3em;margin-top: 50px">Searching elements on the page</h2>
+				</section>
+
+				<section>
+					<h2 style="font-size:1.5em;"><code>element()</code> vs <code>element.all()</code></h2>
+					<!-- TODO -->
+				</section>
+
+				<section>
+					<h2><code>by.binding</code></h2>
+					<h3 style="font-size:1em">In your test</h3>
+					<pre class="mb-30"><code>element( by.binding('myModel') );</code></pre>
+					<h3 style="font-size:1em">In your application</h3>
+					<pre><code>&lt;span ng-bind="myModel">&lt;/span>
+&lt;!-- or -->
+&lt;span>{{myModel}}&lt;/span>
+</code></pre>
+				</section>
+
+				<section>
+					<h2><code>by.model</code></h2>
+					<h3 style="font-size:1em">In your test</h3>
+					<pre class="mb-30"><code>element( by.model('myModel') );</code></pre>
+					<h3 style="font-size:1em">In your application</h3>
+					<pre><code>&lt;input ng-model="myModel" /></code></pre>
+				</section>
+				<section>
+					<h2><code>by.repeater</code></h2>
+					<h3 style="font-size:1em">In your test</h3>
+					<pre class="mb-30"><code>element( by.repeater('user in users').row(0).column('name') );</code></pre>
+					<h3 style="font-size:1em">In your application</h3>
+					<pre><code>&lt;ul ng-model="user in users">
+  &lt;li>
+      &lt;span>{{user.name}}&lt;/span>
+  &lt;/li>
+&lt;/ul></code></pre>
+				</section>
+
+				<section>
+					<h2>Protractor API</h2>
+					<ul>
+						<li><code>by.select()</code></li>
+						<li><code>by.partialButtonText()</code></li>
+						<li><code>elementArrayFinder.each()</code></li>
+						<li>
+							<a href="https://github.com/angular/protractor/blob/master/docs/api.md">
+								Full list of available methods
+							</a>
+						</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2 style="font-size:3em;margin-top: 50px">Executing events</h2>
+				</section>
+
+				<section>
+					<h2><code>.click()</code></h2>
+					<h3 style="font-size:1em">In your test</h3>
+					<pre class="mb-30"><code>element( by.css('[ng-click="submit()"]') );</code></pre>
+					<h3 style="font-size:1em">In your application</h3>
+					<pre><code>&lt;button ng-click="submit()">&lt;button></code></pre>
+				</section>
+
+				<section>
+					<h2>On Enter Press</h2>
+					<h3 style="font-size:1em">In your test</h3>
+					<pre class="mb-30"><code>element( by.model('commentText') ).sendKeys("Hi!", protractor.Key.ENTER);</code></pre>
+					<h3 style="font-size:1em">In your application</h3>
+					<pre><code>&lt;textarea ng-model="commentText">&lt;textarea></code></pre>
+				</section>
+
+				<section>
+					<h2>Searching elements best practices</h2>
+					<ul>
+						<li>Take advantage of AngularJS attributes using <code>by.model</code>, <code>by.repeater</code>, etc</li>
+						<li>Avoid using potential CSS attributes, mainly IDs and Classes.</li>
+					</ul>
+					
+				</section>
+
+				<section>
+					<h2 style="font-size:3em;margin: 50px 0 30px;">Maintanable Tests</h2>
+					<h3>Best practices to organize or tests</h3>
+				</section>
+
+				<section>
+					<h2>Page Objects</h2>
+					<pre><code data-trim>var AngularHomepage = function() {
+  this.nameInput = element(by.model('yourName'));
+  this.greeting = element(by.binding('yourName'));
+
+  this.get = function() {
+    browser.get('http://www.angularjs.org');
+  };
+
+  this.setName = function(name) {
+    this.nameInput.sendKeys(name);
+  };
+};</code></pre>
+				</section>
+
+				<section>
+					<h2>Inherit global elements</h2>
+					<pre><code data-trim>//TODO example</code></pre>
+				</section>
+
+				<section>
+					<h2>Node.JS exports and require</h2>
+				</section>
+
+				<section>
+					<h2>Separate your tests in various test suites</h2>
+<pre><code data-trim>exports.config = {
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+
+  capabilities: { 'browserName': 'chrome' },
+
+  suites: {
+    homepage: 'tests/e2e/homepage/**/*Spec.js',
+    search: ['tests/e2e/contact_search/**/*Spec.js', 'tests/e2e/venue_search/**/*Spec.js']
+  },
+
+  jasmineNodeOpts: { showColors: true }
+};</code></pre>
+<strong>running specific suite of tests</strong>
+<pre><code>protractor protractor.conf.js --suite homepage</code></pre>
+				</section>
+
+				<section>
+					<h2 style="font-size:3em;margin-top:30px">Other config.js advanced tips</h2>
+				</section>
+
+				<section>
+					<h2>Enable <code>multiCapabilities</code></h2>
+				</section>
+
+				<section>
+					<h2>Using <code>onPrepare</code></h2>
+				</section>
+
+				<section>
+					<h2>Using <code>params</code></h2>
+				</section>
+
+				<section>
+					<h2 style="font-size:3em;margin-top:60px">Conclusion</h2>
+				</section>
+
+				<section>
+					<a href="https://github.com/angular/protractor/">
+						<img src="img/protractor-on-github.png" width="900" alt="">
+					</a>
+				</section>
+
+				<section>
+					<h2 style="font-size:3em;margin-top:30px">So, lets have fun testing with Protractor!</h2>
+					<h3>Thank you :)</h3>
+					<a href="https://github.com/ramonvictor">@ramonvictor</a>
 				</section>
 
 			</div>
